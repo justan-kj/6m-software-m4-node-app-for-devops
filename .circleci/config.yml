@@ -46,8 +46,8 @@ jobs:
             name: Heroku Container Push
             command: | 
                 heroku container:login
-                heroku container:push web -a edison-su-devops
-                heroku container:release web -a edison-su-devops
+                heroku container:push web -a justin-su-devops
+                heroku container:release web -a justin-su-devops
 
 workflows:
   simple_workflow:
