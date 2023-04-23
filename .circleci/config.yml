@@ -24,7 +24,21 @@ jobs:
       - run: |
           echo “Running tests...”
           npm run test
-  
+          
+   publish:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build and push Docker image
+          command: |
+            docker build -t test-image .
+            docker tag test-image afawafa/education-space:latest
+            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+            docker push afawafa/education-space:latest
+
   build-and-push:
     executor: docker/docker
     steps:
