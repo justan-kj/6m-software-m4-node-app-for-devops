@@ -64,19 +64,6 @@ jobs:
                 heroku container:release web -a justin-su-devops
 
 workflows:
-  simple_workflow:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - build-and-push:
-          requires:
-            - test
-      - deploy:
-          requires:
-            - build-and-push
-            
   build-and-test:
     jobs:
       - build:
