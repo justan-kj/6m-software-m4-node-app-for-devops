@@ -31,9 +31,9 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/check
-      - docker/login:
-          username: ${DOCKERHUB_USERNAME}
-          password: ${DOCKERHUB_PASSWORD}
+      - run:
+          name: Docker login
+          command: echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
       - docker/build:
           image: afawafa/education-space
       - docker/push:
