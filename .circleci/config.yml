@@ -77,7 +77,7 @@ workflows:
           requires:
             - build-and-push
             
-    build-and-test:
+  build-and-test:
     jobs:
       - build:
           filters:
