@@ -91,6 +91,7 @@ workflows:
             branches:
               only:
                 - main
+                
   build-and-push-and-deploy:
     jobs:
       - build-and-push:
