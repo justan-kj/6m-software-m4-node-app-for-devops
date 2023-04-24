@@ -93,16 +93,28 @@ workflows:
                 - main
 
   build-and-push-and-deploy:
-    jobs:
-      - build-and-push:
-          requires:
-            - test
-          filters:
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*$/
-      - deploy:
-          requires:
-            - build-and-push
-          filters:
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*$/
+      jobs:
+        - build:
+            filters:
+              branches:
+                only:
+                  - main
+        - test:
+            requires:
+              - build
+            filters:
+              branches:
+                only:
+                  - main
+        - build-and-push:
+            requires:
+              - test
+            filters:
+              tags:
+                only: /^v[0-9]+(\.[0-9]+)*$/
+        - deploy:
+            requires:
+              - build-and-push
+            filters:
+              tags:
+                only: /^v[0-9]+(\.[0-9]+)*$/
